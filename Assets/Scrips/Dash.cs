@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-	public int amount = 3;
+	public int amount = 10;
 
     // Update is called once per frame
     void Update()
@@ -13,13 +13,13 @@ public class Dash : MonoBehaviour
 		{
 			Vector3 ray = transform.TransformDirection(Vector3.forward);
 			RaycastHit hit;
-			if (Physics.Raycast(this.transform.position, ray, out hit, 10))
+			if (Physics.Raycast(this.transform.position, ray, out hit, 5))
             {
 				this.transform.position = hit.point -= this.transform.forward * 1;
 			}
             else
 			{
-				this.transform.position = this.transform.forward * 10;
+				this.transform.position = this.transform.forward * 5;
 			}
 			amount -= 1;
 
