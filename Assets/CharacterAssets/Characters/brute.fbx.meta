@@ -8,8 +8,8 @@ ModelImporter:
     second: mixamo.com
   externalObjects: {}
   materials:
-    importMaterials: 1
-    materialName: 0
+    importMaterials: 0
+    materialName: 2
     materialSearch: 1
     materialLocation: 1
   animations:
