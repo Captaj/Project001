@@ -15,6 +15,15 @@ public class PlayerScript : MonoBehaviour
     private float jumpForce = 200f;
     [SerializeField]
     private float freeFall = -20f;
+    [SerializeField]
+    private float sprintMod = 1.5f;
+    [SerializeField]
+    private float crouchMod = 0.5f;
+
+    [SerializeField]
+    private float speedMod = 1f;
+    [SerializeField]
+    private bool isWalking = true;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +50,30 @@ public class PlayerScript : MonoBehaviour
             rb.AddForce(new Vector3(0, freeFall, 0), ForceMode.Acceleration);
         }
 
+        //If the player presses left shift while grounded, then they activate the sprint button
+        if (isGrounded == true && Input.GetKey(KeyCode.LeftShift))
+        {
+            HandleSprint();
+        }
+        
+        //If the player presses left control while grounded, then they activate the crouch button
+        if (isGrounded == true && Input.GetKey(KeyCode.LeftControl))
+        {
+            HandleCrouch();
+        }
+
+        //if the isWalking condition is true, then it sets the speed modifier to 1
+        if(isWalking == true)
+        {
+            speedMod = 1f;
+        }
+
+        //If the player isn't holding down the sprint or crouch button, then it sets walking to true
+        if(Input.GetKey(KeyCode.LeftShift) == false && Input.GetKey(KeyCode.LeftControl) == false)
+        {
+            isWalking = true;
+        }
+
     }
 
   
@@ -51,7 +84,7 @@ public class PlayerScript : MonoBehaviour
         if(isGrounded == true)
         {
             //The the vector is taken from the horizontal and vertical button presses and multiplied by the speed veriable
-            inputVector = new Vector3(Input.GetAxis("Horizontal") * playerSpeed, 0, Input.GetAxis("Vertical") * playerSpeed);
+            inputVector = new Vector3(Input.GetAxis("Horizontal") * playerSpeed * speedMod, 0, Input.GetAxis("Vertical") * playerSpeed * speedMod);
             //the input vector from above is taken and used as the new movement velocity for the rigidbody physics
             rb.velocity = (inputVector);
         }
@@ -103,6 +136,23 @@ public class PlayerScript : MonoBehaviour
         rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         //I don't know why this needs to be here for the jump to feel better, but it feels way different if it isn't. I am guessing it doesn't detect if it isn't grounded fast enough normally. 
         isGrounded = false;
+    }
+
+
+    //This functions the sprint modifier for the character
+    private void HandleSprint()
+    {
+        //sets the movement modifer to equal the sprint float, as well as setting the isWalking to false, so the game won't try and set the speed modifier back to 1
+        speedMod = sprintMod;
+        isWalking = false;
+    }
+
+    //This functions the crouch modifier for the character
+    private void HandleCrouch()
+    {
+        //sets the movement modifer to equal the crouch float, as well as setting the isWalking to false, so the game won't try and set the speed modifier back to 1
+        speedMod = crouchMod;
+        isWalking = false;
     }
 
 }
