@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
 
-    public static bool GameIsPaused = false;
+    public static bool gameIsPaused = false;
 
     public GameObject pauseMenuUI;
 
@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
         //If you hit escape, what happens
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (gameIsPaused)
             {
                 //If the game is already paused, you resume
                 Resume();
@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         //the bool stored for game state is set to false
-        GameIsPaused = false;
+        gameIsPaused = false;
     }
 
 
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         //the game itself is paused in the background (needs to be tweaked
         Time.timeScale = 0f;
         //the bool for the game state is stored as true
-        GameIsPaused = true;
+        gameIsPaused = true;
     }
 
     public void LoadMenu()
