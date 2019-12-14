@@ -1,5 +1,5 @@
 
-=== Tue Nov 19 00:48:07 2019
+=== Fri Dec 13 18:17:40 2019
 
 Packages were changed.
 Update Mode: mergeDefaultDependencies
@@ -45,3 +45,11 @@ The following packages were added:
   com.unity.modules.vr@1.0.0
   com.unity.modules.wind@1.0.0
   com.unity.modules.xr@1.0.0
+
+=== Fri Dec 13 19:29:16 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.vscode from version 1.1.2 to 1.1.3
